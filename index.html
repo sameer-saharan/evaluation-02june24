@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+    <nav>
+        <a class="nav-items" href="./index.html">Home</a>
+        <a class="nav-items" href="./deletedTask.html">Deleted Tasks</a>
+    </nav>
+    <main>
+        <div class="select-cont">
+            <div class="select-form">
+                <input type="text" id="task-input"> </input>
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <button class="create-btn" onclick="createTask()">Create Task</button>
+            </div>
+        </div>
+        <div class="table-cont">
+            <table>
+                <thead class="tableHead">
+                    <th>Name</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Remove</th>
+                </thead>
+                <tbody class="tableBody">
+                    <!-- Table Body -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+</body>
+<script src="./scripts/index.js"></script>
+</html>
