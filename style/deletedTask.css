@@ -1,0 +1,53 @@
+* {
+    font-family: sans-serif;
+    margin: 0;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+.nav-items {
+    text-decoration: none;
+    color: #000000;
+    padding: 5px 80px;
+    margin: 20px;
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.nav-items:hover {
+    background-color: #f9b2b2;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    background-color: #57c2a4;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+}
+
+.restore-button {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #12f662;
+}
+
+.delete-button {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #ef5252;
+}
