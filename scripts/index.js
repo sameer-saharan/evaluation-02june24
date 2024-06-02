@@ -59,10 +59,27 @@ function displayTask() {
         tdName.innerHTML = `${t.name}`;
 
         let tdPriority = document.createElement('td');
-        tdPriority.innerHTML = `${t.priority}`;
+        if (t.priority === 'low') {
+            tdPriority.innerHTML = `<span class='p-low'>${t.priority}</span>`;
+        } else if (t.priority === 'medium') {
+            tdPriority.innerHTML = `<span class='p-medium'>${t.priority}</span>`;
+        } else if (t.priority === 'high') {
+            tdPriority.innerHTML = `<span class='p-high'>${t.priority}</span>`;
+        }
 
         let tdStatus = document.createElement('td');
-        tdStatus.innerHTML = `${t.status}`
+        statusBtn = document.createElement('button');
+        statusBtn.setAttribute('onclick', `changePriority(${t.id})`);
+        // Status button styling
+        if (t.status === 'pending') {
+            statusBtn.setAttribute('class', 'status-button')
+        } else if (t.status === 'in-progress') {
+            statusBtn.setAttribute('class', 'status-button-inp')
+        } else if (t.status === 'complete') {
+            statusBtn.setAttribute('class', 'status-button-comp')
+        }
+        statusBtn.innerHTML = `${t.status}`
+        tdStatus.appendChild(statusBtn);
 
         let tdRemove = document.createElement('td');
         let remove = document.createElement('button');
@@ -90,6 +107,23 @@ function removeTask(id) {
 
     // Removing from Tasks
     tasks.splice(index, 1);
+    localStorage.setItem('task', JSON.stringify(tasks));
+
+    displayTask();
+}
+
+function changePriority(id) {
+    let index = tasks.findIndex((obj) => obj.id === id);
+
+    if (tasks[index].status === 'pending') {
+        tasks[index].status = 'in-progress';
+    } else if (tasks[index].status === 'in-progress') {
+        tasks[index].status = 'complete';
+    } else if (tasks[index].status === 'complete') {
+        tasks[index].status = 'pending';
+    }
+
+    // Updating Tasks Array
     localStorage.setItem('task', JSON.stringify(tasks));
 
     displayTask();

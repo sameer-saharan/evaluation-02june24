@@ -19,10 +19,27 @@ function displayDeletedTask() {
         tdName.innerHTML = `${t.name}`;
 
         let tdPriority = document.createElement('td');
-        tdPriority.innerHTML = `${t.priority}`;
+        if (t.priority === 'low') {
+            tdPriority.innerHTML = `<span class='p-low'>${t.priority}</span>`;
+        } else if (t.priority === 'medium') {
+            tdPriority.innerHTML = `<span class='p-medium'>${t.priority}</span>`;
+        } else if (t.priority === 'high') {
+            tdPriority.innerHTML = `<span class='p-high'>${t.priority}</span>`;
+        }
 
         let tdStatus = document.createElement('td');
-        tdStatus.innerHTML = `${t.status}`
+        statusBtn = document.createElement('button');
+        statusBtn.setAttribute('onclick', `changePriorityX(${t.id})`);
+        // Status button styling
+        if (t.status === 'pending') {
+            statusBtn.setAttribute('class', 'status-button')
+        } else if (t.status === 'in-progress') {
+            statusBtn.setAttribute('class', 'status-button-inp')
+        } else if (t.status === 'complete') {
+            statusBtn.setAttribute('class', 'status-button-comp')
+        }
+        statusBtn.innerHTML = `${t.status}`
+        tdStatus.appendChild(statusBtn);
 
         let tdRestore = document.createElement('td');
         let restore = document.createElement('button');
@@ -75,6 +92,24 @@ function deleteTaskPerm(id) {
     displayDeletedTask();
 
 }
+
+function changePriorityX(id) {
+    let index = deletedTasks.findIndex((obj) => obj.id === id);
+
+    if (deletedTasks[index].status === 'pending') {
+        deletedTasks[index].status = 'in-progress';
+    } else if (deletedTasks[index].status === 'in-progress') {
+        deletedTasks[index].status = 'complete';
+    } else if (deletedTasks[index].status === 'complete') {
+        deletedTasks[index].status = 'pending';
+    }
+
+    // Updating Tasks Array
+    localStorage.setItem('dtask', JSON.stringify(deletedTasks));
+
+    displayDeletedTask();
+}
+
 
 // Initial Display
 displayDeletedTask();
