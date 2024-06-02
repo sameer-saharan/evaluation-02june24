@@ -45,7 +45,7 @@ function createTask() {
         tasks.push(obj);
         displayTask();
     } else {
-        alert(`Title cannot be empty`);
+        alert(`Task cannot be empty!`);
     }
 }
 
